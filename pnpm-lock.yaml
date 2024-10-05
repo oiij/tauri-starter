@@ -45,8 +45,8 @@ importers:
         specifier: 2.9.3
         version: 2.9.3
       h3:
-        specifier: 2.0.0
-        version: 2.0.0
+        specifier: ^1.13.0
+        version: 1.13.0
       nanoid:
         specifier: 5.0.7
         version: 5.0.7
@@ -3171,11 +3171,8 @@ packages:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}
     engines: {node: '>=10'}
 
-  h3@1.12.0:
-    resolution: {integrity: sha512-Zi/CcNeWBXDrFNlV0hUBJQR9F7a96RjMeAZweW/ZWkR9fuXrMcvKnSA63f/zZ9l0GgQOZDVHGvXivNN9PWOwhA==}
-
-  h3@2.0.0:
-    resolution: {integrity: sha512-3INyyEir2VkWXD3auY+uUL/mqrgYX5ejRdUjtjyd4AOZcoijIyvf6PkBPsn+NFGE5rks2nCcMIOLZGTxpp/A7w==}
+  h3@1.13.0:
+    resolution: {integrity: sha512-vFEAu/yf8UMUcB4s43OaDaigcqpQd14yanmOsn+NcRX3/guSKncyE2rOYhq8RIchgJrPSs/QiIddnTTR1ddiAg==}
 
   has-ansi@2.0.0:
     resolution: {integrity: sha512-C8vBJ8DwUCx19vhm7urhTuUsr4/IyP6l4VzNQDv+ryHQObW3TTTp9yB68WpYgRe2bbaGuZ/se74IqFeVnMnLZg==}
@@ -9029,7 +9026,7 @@ snapshots:
     dependencies:
       duplexer: 0.1.2
 
-  h3@1.12.0:
+  h3@1.13.0:
     dependencies:
       cookie-es: 1.2.2
       crossws: 0.2.4
@@ -9043,8 +9040,6 @@ snapshots:
       unenv: 1.10.0
     transitivePeerDependencies:
       - uWebSockets.js
-
-  h3@2.0.0: {}
 
   has-ansi@2.0.0:
     dependencies:
@@ -11451,7 +11446,7 @@ snapshots:
       '@rollup/pluginutils': 5.1.2(rollup@4.22.5)
       ast-kit: 1.2.1
       get-port-please: 3.1.2
-      h3: 1.12.0
+      h3: 1.13.0
       launch-editor: 2.9.1
       magic-string: 0.30.11
       pathe: 1.1.2
