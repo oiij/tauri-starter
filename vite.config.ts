@@ -60,7 +60,9 @@ export default defineConfig(({ mode }) => {
       Info(), // https://github.com/yjl9903/unplugin-info
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
       TurboConsole(), // https://github.com/unplugin/unplugin-turbo-console
-      analyzer(), // https://github.com/nonzzz/vite-bundle-analyzer
+      analyzer({
+        analyzerMode: 'json',
+      }), // https://github.com/nonzzz/vite-bundle-analyzer
       ...VitePluginAutoImport(),
       ...VitePluginComponents(),
       ...VitePluginI18n(),

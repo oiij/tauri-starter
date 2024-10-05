@@ -518,7 +518,6 @@ declare module 'vue' {
     readonly useAudioContext: UnwrapRef<typeof import('./src/composables/useAudioContext')['useAudioContext']>
     readonly useAutoLoadData: UnwrapRef<typeof import('./src/composables/useAutoLoadData')['useAutoLoadData']>
     readonly useAutoRatio: UnwrapRef<typeof import('./src/composables/useAutoRatio')['useAutoRatio']>
-    readonly useBScroll: UnwrapRef<typeof import('./src/composables/useBScroll')['useBScroll']>
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
@@ -534,7 +533,6 @@ declare module 'vue' {
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
     readonly useConfirmDialog: UnwrapRef<typeof import('@vueuse/core')['useConfirmDialog']>
-    readonly useCopyCode: UnwrapRef<typeof import('./src/composables/useCopyCode')['useCopyCode']>
     readonly useCounter: UnwrapRef<typeof import('@vueuse/core')['useCounter']>
     readonly useCreateWebView: UnwrapRef<typeof import('./src/composables/useTauriWindow')['useCreateWebView']>
     readonly useCreateWebViewWindow: UnwrapRef<typeof import('./src/composables/useTauriWindow')['useCreateWebViewWindow']>
@@ -557,7 +555,6 @@ declare module 'vue' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
-    readonly useEcharts: UnwrapRef<typeof import('./src/composables/useEcharts')['default']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
@@ -610,7 +607,6 @@ declare module 'vue' {
     readonly useMousePressed: UnwrapRef<typeof import('@vueuse/core')['useMousePressed']>
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
     readonly useNProgress: UnwrapRef<typeof import('./src/composables/useNProgress')['useNProgress']>
-    readonly useNaiveForm: UnwrapRef<typeof import('./src/composables/useNaiveForm')['useNaiveForm']>
     readonly useNaiveTheme: UnwrapRef<typeof import('./src/composables/useNaiveTheme')['useNaiveTheme']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
@@ -623,10 +619,8 @@ declare module 'vue' {
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParam: UnwrapRef<typeof import('./src/composables/useParam')['useParam']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
-    readonly usePdf: UnwrapRef<typeof import('./src/composables/usePdf')['usePdf']>
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
     readonly usePermission: UnwrapRef<typeof import('@vueuse/core')['usePermission']>
-    readonly usePixiJs: UnwrapRef<typeof import('./src/composables/usePixiJs')['usePixiJs']>
     readonly usePointer: UnwrapRef<typeof import('@vueuse/core')['usePointer']>
     readonly usePointerLock: UnwrapRef<typeof import('@vueuse/core')['usePointerLock']>
     readonly usePointerSwipe: UnwrapRef<typeof import('@vueuse/core')['usePointerSwipe']>
@@ -637,15 +631,11 @@ declare module 'vue' {
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
-    readonly useReactiveAxios: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useReactiveAxios']>
-    readonly useRefGet: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefGet']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
-    readonly useRefPost: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefPost']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouteGuard: UnwrapRef<typeof import('./src/composables/useRouteGuard')['useRouteGuard']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
-    readonly useScanCode: UnwrapRef<typeof import('./src/composables/useScanCode')['useScanCode']>
     readonly useScreenOrientation: UnwrapRef<typeof import('@vueuse/core')['useScreenOrientation']>
     readonly useScreenSafeArea: UnwrapRef<typeof import('@vueuse/core')['useScreenSafeArea']>
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
@@ -657,7 +647,6 @@ declare module 'vue' {
     readonly useServerSeoMeta: UnwrapRef<typeof import('@unhead/vue')['useServerSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
-    readonly useSheets: UnwrapRef<typeof import('./src/composables/useSheets')['useSheets']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
@@ -677,7 +666,6 @@ declare module 'vue' {
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
     readonly useTextSelection: UnwrapRef<typeof import('@vueuse/core')['useTextSelection']>
     readonly useTextareaAutosize: UnwrapRef<typeof import('@vueuse/core')['useTextareaAutosize']>
-    readonly useThreeJs: UnwrapRef<typeof import('./src/composables/useThreeJs')['useThreeJs']>
     readonly useThrottle: UnwrapRef<typeof import('@vueuse/core')['useThrottle']>
     readonly useThrottleFn: UnwrapRef<typeof import('@vueuse/core')['useThrottleFn']>
     readonly useThrottledRefHistory: UnwrapRef<typeof import('@vueuse/core')['useThrottledRefHistory']>
@@ -692,13 +680,11 @@ declare module 'vue' {
     readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
     readonly useTrack: UnwrapRef<typeof import('./src/composables/useTrack')['useTrack']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
-    readonly useTyped: UnwrapRef<typeof import('./src/composables/useTyped')['default']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserDisplayMedia: UnwrapRef<typeof import('./src/composables/useUserDisplayMedia')['useUserDisplayMedia']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
-    readonly useVerifyForm: UnwrapRef<typeof import('./src/composables/useVerifyForm')['useVerifyForm']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
