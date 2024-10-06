@@ -1,8 +1,9 @@
 <script setup lang='ts'>
 import { getCurrentWindow } from '@tauri-apps/api/window'
 
-const { title } = defineProps<{
+const { title, showMaximizeButton = true } = defineProps<{
   title?: string | null
+  showMaximizeButton?: boolean
 }>()
 const isFullscreen = ref(false)
 const window = getCurrentWindow()
@@ -25,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-[28px] w-full flex bg-white">
+  <div class="h-[28px] w-full flex">
     <div class="flex-y-center flex-1" data-tauri-drag-region>
       <slot name="title">
         <div v-if="title" class="pointer-events-none select-none p-x-3">
@@ -40,7 +41,7 @@ onMounted(() => {
             <i class="i-mage-minus" />
           </template>
         </n-button>
-        <n-button quaternary size="small" type="default" class="rounded-0!" @click="toggleFullScreen">
+        <n-button v-if="showMaximizeButton" quaternary size="small" type="default" class="rounded-0!" @click="toggleFullScreen">
           <template #icon>
             <i :class="isFullscreen ? 'i-mage-scale-down' : 'i-mage-scale-up'" />
           </template>
