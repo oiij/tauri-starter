@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import type { ClientOptions } from '@tauri-apps/plugin-http'
 import { fetch } from '@tauri-apps/plugin-http'
 
@@ -19,14 +20,17 @@ type Options = RequestInit & ClientOptions & {
 }
 interface RequestResult<D extends object | string = any> {
   data: D
+  request?: any
   status: number
   statusText: string
   url: string
-  headers: HeadersInit
+  headers: Options['headers']
 }
 function request< D extends object | string = any>(url: string, options?: Options) {
+  const token = ''
   const { method = 'get', headers = {
     'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`,
   }, data } = options ?? {}
   return new Promise<D>((resolve, reject) => {
     const _url = `${BASE_PREFIX}${url}${method === 'get' ? objectToURLParams(data) : ''}`
@@ -41,8 +45,9 @@ function request< D extends object | string = any>(url: string, options?: Option
       const contentType = headers.get('content-type')
       const isText = contentType === 'text/html'
       const isJson = contentType === 'application/json'
-      const data: RequestResult<D> = {
+      const result: RequestResult<D> = {
         data: isJson ? await res.json() : isText ? await res.text() : res.body,
+        request: { url: _url, method, data, headers, options },
         status,
         statusText,
         url,
@@ -50,18 +55,20 @@ function request< D extends object | string = any>(url: string, options?: Option
       }
       if (ok) {
         if (status === 200) {
-          return resolve(data.data)
+          console.info(result)
+
+          return resolve(result.data)
         }
         else {
-          console.error(data)
-          window.$message.error(data.statusText)
-          return reject(data.data)
+          console.error(result)
+          window.$message.error(result.statusText)
+          return reject(result.data)
         }
       }
       else {
-        console.error(data)
-        window.$message.error(data.statusText)
-        return reject(data.data)
+        console.error(result)
+        window.$message.error(result.statusText)
+        return reject(result.data)
       }
     }).catch((err: { data: any, status: number, statusText: string, headers: Record<string, string> }) => {
       console.error(err)
