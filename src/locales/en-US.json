@@ -1,0 +1,10 @@
+{
+  "GLOBAL": {
+    "MENU": {
+      "HOME": "Home",
+      "SETTING": "Setting"
+    }
+  },
+  "Hello": "Hello World !",
+  "Welcome": "Welcome Use This Template"
+}

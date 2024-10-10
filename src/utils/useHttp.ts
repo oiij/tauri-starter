@@ -1,91 +1,96 @@
 /* eslint-disable no-console */
-import type { ClientOptions } from '@tauri-apps/plugin-http'
+
+import type {
+  AxiosInstance,
+  AxiosPromise,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios'
 import { fetch } from '@tauri-apps/plugin-http'
+import axios, {
+  AxiosError,
+} from 'axios'
+import { stringify } from 'qs'
 
-function objectToURLParams(obj?: Record<string, any>) {
-  const params = new URLSearchParams()
-  for (const key in obj) {
-    // eslint-disable-next-line no-prototype-builtins
-    if (obj.hasOwnProperty(key)) {
-      params.append(key, obj[key])
+const BASE_PREFIX = window.isTauri ? import.meta.env.VITE_API_BASE_URL : import.meta.env.VITE_API_BASE_PREFIX
+function tauriAdapter(config: InternalAxiosRequestConfig): AxiosPromise {
+  return new Promise((resolve, reject) => {
+    const controller = new AbortController()
+    const { baseURL, url, method, params, data, headers, timeout, signal, validateStatus } = config
+    if (signal) {
+      signal.onabort = () => {
+        controller.abort()
+      }
     }
-  }
-  return params.toString()
-}
+    const _url = `${baseURL}${url}${params ? `?${stringify(params, { arrayFormat: 'brackets' })}` : ''}`
 
-const BASE_PREFIX = import.meta.env.VITE_API_BASE_URL || ''
-
-type Options = RequestInit & ClientOptions & {
-  data?: Record<string, any>
-}
-interface RequestResult<D extends object | string = any> {
-  data: D
-  request?: any
-  status: number
-  statusText: string
-  url: string
-  headers: Options['headers']
-}
-function request< D extends object | string = any>(url: string, options?: Options) {
-  const token = ''
-  const { method = 'get', headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`,
-  }, data } = options ?? {}
-  return new Promise<D>((resolve, reject) => {
-    const _url = `${BASE_PREFIX}${url}${method === 'get' ? objectToURLParams(data) : ''}`
-    const _data = ['GET', 'HEAD'].includes(method.toUpperCase()) ? undefined : JSON.stringify(data)
     fetch(_url, {
       method,
-      body: _data,
+      body: data,
       headers,
-      ...options,
+      signal: controller.signal,
+      connectTimeout: timeout,
     }).then(async (res) => {
-      const { ok, status, statusText, url, headers } = res
+      const { status, statusText, headers } = res
       const contentType = headers.get('content-type')
       const isText = contentType === 'text/html'
       const isJson = contentType === 'application/json'
-      const result: RequestResult<D> = {
+      const response: AxiosResponse = {
         data: isJson ? await res.json() : isText ? await res.text() : res.body,
-        request: { url: _url, method, data, headers, options },
         status,
         statusText,
-        url,
-        headers,
-      }
-      if (ok) {
-        if (status === 200) {
-          console.info(result)
+        headers: headers as any,
+        config,
+        request: '',
 
-          return resolve(result.data)
-        }
-        else {
-          console.error(result)
-          window.$message.error(result.statusText)
-          return reject(result.data)
-        }
       }
-      else {
-        console.error(result)
-        window.$message.error(result.statusText)
-        return reject(result.data)
-      }
-    }).catch((err: { data: any, status: number, statusText: string, headers: Record<string, string> }) => {
-      console.error(err)
-      window.$message.error(err.statusText)
-      return reject(err.data)
+      if (validateStatus)
+        return validateStatus(status) ? resolve(response) : reject(new AxiosError(statusText, `${status}`, config, undefined, response))
+      return status >= 200 && status < 300 ? resolve(response) : reject(new AxiosError(statusText, `${status}`, config, undefined, response))
+    }).catch((err) => {
+      return reject(new AxiosError('fetch-error', '400', config, {}, err))
     })
   })
 }
+const axiosInstance: AxiosInstance = axios.create({
+  baseURL: BASE_PREFIX,
+  timeout: 1000 * 30,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  adapter: window.isTauri ? tauriAdapter : undefined,
+})
 
-export function get<RES extends string | object>(path: string, data?: Record<string, any>) {
-  return request<RES>(path, {
+axiosInstance.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    return config
+  },
+  (error: AxiosError) => {
+    console.error('request-error', error)
+    return Promise.reject(error)
+  },
+)
+
+axiosInstance.interceptors.response.use(
+  (response: AxiosResponse) => {
+    console.log('response', response)
+    return response.data
+  },
+  (error: AxiosError) => {
+    console.error('response-error', error)
+    window.$message.error(error.message)
+    return Promise.reject(error)
+  },
+)
+
+export function get<RES = any, REQ = object>(path: string, data?: REQ) {
+  return axiosInstance<RES>(path, {
     method: 'get',
-    data,
+    params: data,
   })
 }
 export function post<RES extends string | object>(path: string, data?: Record<string, any>) {
-  return request<RES>(path, {
+  return axiosInstance<RES>(path, {
     method: 'post',
     data,
   })

@@ -19,11 +19,10 @@ import WebfontDownload from 'vite-plugin-webfont-dl'
 import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n } from './config'
 
 const host = process.env.TAURI_DEV_HOST
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL, VITE_BASE } = loadEnv(mode, process.cwd(), '')
-  const debug = !!process.env.VSCODE_DEBUG
+  const { VITE_DEV_PORT, VITE_BASE, VITE_API_BASE_PREFIX, VITE_API_BASE_URL } = loadEnv(mode, process.cwd(), '')
+  const debug = !!process.env.VSCODE_DEBUG || !!process.env.TAURI_ENV_DEBUG
 
   return {
 
@@ -68,28 +67,14 @@ export default defineConfig(({ mode }) => {
       ...VitePluginI18n(),
 
     ],
-
-    // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
-    //
-    // 1. prevent vite from obscuring rust errors
     clearScreen: false,
     base: VITE_BASE ?? '/',
-    // 2. tauri expects a fixed port, fail if that port is not available
     server: {
       port: Number(VITE_DEV_PORT),
-      host: true, // host设置为true才可以使用network的形式，以ip访问项目
-      open: false, // 自动打开浏览器
-      cors: true, // 跨域设置允许
-      strictPort: true, // 如果端口已占用直接退出
-      proxy: VITE_API_BASE_URL === ''
-        ? undefined
-        : {
-            [VITE_API_BASE_PREFIX]: {
-              target: VITE_API_BASE_URL,
-              changeOrigin: true,
-              rewrite: path => path.replace(new RegExp(`^${VITE_API_BASE_PREFIX}`), ''),
-            },
-          },
+      host: true,
+      open: false,
+      cors: true,
+      strictPort: true,
       hmr: host
         ? {
             protocol: 'ws',
@@ -98,28 +83,35 @@ export default defineConfig(({ mode }) => {
           }
         : undefined,
       watch: {
-        // 3. tell vite to ignore watching `src-tauri`
         ignored: ['**/src-tauri/**'],
+      },
+      proxy: {
+        [VITE_API_BASE_PREFIX]: {
+          target: VITE_API_BASE_URL,
+          changeOrigin: true,
+          rewrite: path => path.replace(new RegExp(`^${VITE_API_BASE_PREFIX}`), ''),
+        },
       },
     },
     preview: {
       host: true,
     },
-    envPrefix: ['VITE_'],
+    envPrefix: ['VITE_', 'TAURI_ENV_*'],
     build: {
+      target: process.env.TAURI_ENV_PLATFORM === 'windows'
+        ? 'chrome105'
+        : 'safari13',
       minify: debug ? false : 'esbuild',
       sourcemap: debug,
       brotliSize: false,
       chunkSizeWarningLimit: 2000,
-      // 在生产环境移除console.log
-      // terserOptions: {
-      //   compress: {
-      //     drop_console: true,
-      //     drop_debugger: true,
-      //   },
-      // },
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
       assetsDir: 'static/assets',
-      // 静态资源打包到dist下的不同目录
       rollupOptions: {
         output: {
           chunkFileNames: 'static/js/[name]-[hash].js',
@@ -131,8 +123,7 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        '~': resolve(__dirname, './src'), // 路径别名
-        'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
+        '~': resolve(__dirname, './src'),
       },
     },
     css: {

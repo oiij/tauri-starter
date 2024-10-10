@@ -5,8 +5,11 @@ defineOptions({
 definePage({
   meta: {
     layout: 'default',
-    title: 'Hello World',
+    title: 'HOME',
+    requireAuth: true,
     keepAlive: true,
+    icon: 'i-mage-home',
+
   },
 })
 useHead({
@@ -15,8 +18,8 @@ useHead({
 </script>
 
 <template>
-  <div class="flex-col-center gap-10">
-    <!-- <HelloWorld /> -->
+  <div class="wh-full flex-col-center gap-10">
+    <HelloWorld />
   </div>
 </template>
 

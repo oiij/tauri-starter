@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { listen } from '@tauri-apps/api/event'
-
 useHead({
   title: import.meta.env.VITE_APP_NAME,
   meta: [
@@ -17,10 +15,6 @@ useHead({
       href: computed(() => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg'),
     },
   ],
-})
-const router = useRouter()
-listen('open-setting', () => {
-  router.push('/setting')
 })
 </script>
 
