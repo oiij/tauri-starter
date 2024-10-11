@@ -15,8 +15,7 @@ definePage({
     icon: 'i-mage-settings',
   },
 })
-const { language, theme } = storeToRefs(useAppStore())
-const { setLanguage, setThemeMode } = useAppStore()
+const { language, colorMode } = storeToRefs(useAppStore())
 const CardItem = defineComponent((props: { title?: string }, { slots }) => {
   return () => h('div', {
     class: 'flex-col gap-[10px] rounded-xl bg-white p-[20px] dark:bg-black/20',
@@ -33,7 +32,7 @@ const CardItem = defineComponent((props: { title?: string }, { slots }) => {
 const localesOptions: SelectOption[] = [
   {
     label: '跟随系统',
-    value: 'system',
+    value: 'auto',
   },
   {
     label: '简体中文',
@@ -44,13 +43,10 @@ const localesOptions: SelectOption[] = [
     value: 'en-US',
   },
 ]
-function onLocaleUpdate(v: string) {
-  setLanguage(v).then(() => window.$message.success('更新成功')).catch(() => window.$message.error('更新失败'))
-}
-const themeModeOptions: SelectOption[] = [
+const colorModeOptions: SelectOption[] = [
   {
     label: '跟随系统',
-    value: 'system',
+    value: 'auto',
 
   },
   {
@@ -62,22 +58,16 @@ const themeModeOptions: SelectOption[] = [
     value: 'dark',
   },
 ]
-function onThemeModeUpdate(v: string) {
-  setThemeMode(v).then(() => window.$message.success('更新成功')).catch(() => window.$message.error('更新失败'))
-}
-onMounted(async () => {
-
-})
 </script>
 
 <template>
   <div class="flex-col gap-[10px] p-[20px]">
     <CardItem title="通用">
       <n-form-item label="语言">
-        <n-select class="w-[260px]!" :value="language" :options="localesOptions" @update-value="onLocaleUpdate" />
+        <n-select v-model:value="language" class="w-[260px]!" :options="localesOptions" />
       </n-form-item>
       <n-form-item label="颜色模式">
-        <n-select class="w-[260px]!" :value="theme" :options="themeModeOptions" @update-value="onThemeModeUpdate" />
+        <n-select v-model:value="colorMode" class="w-[260px]!" :options="colorModeOptions" />
       </n-form-item>
     </CardItem>
     <CardItem title="关于">
