@@ -17,6 +17,9 @@ function tauriAdapter(config: InternalAxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
     const controller = new AbortController()
     const { baseURL, url, method, params, data, headers, timeout, signal, validateStatus } = config
+    if (data instanceof FormData) {
+      headers.delete('Content-Type')
+    }
     if (signal) {
       signal.onabort = () => {
         controller.abort()
