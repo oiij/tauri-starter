@@ -1,7 +1,6 @@
 import { listen } from '@tauri-apps/api/event'
 import { getAllWindows } from '@tauri-apps/api/window'
 import { defineStore } from 'pinia'
-import { colorMode } from '~/composables/useColorMode'
 import { router } from '~/modules'
 
 export const useAppStore = defineStore(
@@ -9,6 +8,7 @@ export const useAppStore = defineStore(
   () => {
     const isTauri = ref(window.isTauri)
     const { language, setLanguage } = useLanguage()
+    const { colorMode } = useTheme()
     const { value: collapsed, toggle: toggleCollapsed } = useBoolean(false)
     async function initTauriEventListen() {
       const window = (await getAllWindows()).find(f => f.label === 'main')
