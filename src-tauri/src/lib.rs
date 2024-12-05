@@ -64,28 +64,25 @@ pub fn run() {
         .plugin(tauri_plugin_positioner::init())
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_shell::init())
-        .plugin(tauri_plugin_store::Builder::new().build())
+        .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_upload::init())
         .plugin(tauri_plugin_websocket::init())
         .invoke_handler(tauri::generate_handler![greet,set_variable,get_variable,remove_variable])
         .setup(|app| {
             let store = app
-                .handle()
-                .store_builder("store.bin")
-                .auto_save(Duration::from_millis(100))
-                .build();
-
-            let _ = store.load();
-            let value = store
-                .get("value")
-                .and_then(|v| v.as_str().map(String::from))
-                .unwrap_or_else(|| "".to_owned());
-            let boolean = store
-                .get("boolean")
-                .and_then(|v| v.as_bool())
-                .unwrap_or(false);
-            println!("{}", value); // {"value":""}
-            println!("{}", boolean); // {"value":false}
+                .store("store.bin")?;
+            let value = store.get("value");
+            let boolean = store.get("boolean");
+            // let value = store
+            //     .get("value")
+            //     .and_then(|v| v.as_str().map(String::from))
+            //     .unwrap_or_else(|| "".to_owned());
+            // let boolean = store
+            //     .get("boolean")
+            //     .and_then(|v| v.as_bool())
+            //     .unwrap_or(false);
+            println!("{:?}", value); // {"value":""}
+            println!("{:?}", boolean); // {"value":false}
 
             #[cfg(all(desktop))]
             {

@@ -16,30 +16,30 @@ crate-type = [
 ]
 
 [build-dependencies]
-tauri-build = { version = "2.0.0", features = [] }
+tauri-build = { version = "2.0.3", features = [] }
 
 [dependencies]
-tauri = { version = "2.0.0", features = [
+tauri = { version = "2.1.1", features = [
   "macos-private-api",
   "tray-icon",
   "unstable"
 ] }
-serde = { version = "1", features = [ "derive" ] }
-serde_json = "1"
-tauri-plugin-autostart = "2.0.0" # https://tauri.app/plugin/autostart/
-tauri-plugin-clipboard-manager = "2.0.0" # https://tauri.app/plugin/clipboard/
-tauri-plugin-dialog = "2.0.0" # https://tauri.app/plugin/dialog/
-tauri-plugin-fs = "2.0.0" # https://tauri.app/plugin/file-system/
-tauri-plugin-http = "2.0.0" # https://tauri.app/plugin/http-client/
-tauri-plugin-notification = "2.0.0" # https://tauri.app/plugin/notification/
-tauri-plugin-os = "2.0.0" # https://tauri.app/plugin/os-info/
-tauri-plugin-positioner = "2.0.0" # https://tauri.app/plugin/positioner/
-tauri-plugin-process = "2.0.0" # https://tauri.app/plugin/process/
-tauri-plugin-shell = "2.0.0" # https://tauri.app/plugin/shell/
-tauri-plugin-store = "2.0.0" # https://tauri.app/plugin/store/
-tauri-plugin-upload = "2.0.0" # https://tauri.app/plugin/upload/
-tauri-plugin-websocket = "2.0.0" # https://tauri.app/plugin/websocket/
+serde = { version = "1.0.215", features = [ "derive" ] }
+serde_json = "1.0.133"
+tauri-plugin-autostart = "2.0.1" # https://tauri.app/plugin/autostart/
+tauri-plugin-clipboard-manager = "2.0.2" # https://tauri.app/plugin/clipboard/
+tauri-plugin-dialog = "2.0.4" # https://tauri.app/plugin/dialog/
+tauri-plugin-fs = "2.1.0" # https://tauri.app/plugin/file-system/
+tauri-plugin-http = "2.0.4" # https://tauri.app/plugin/http-client/
+tauri-plugin-notification = "2.0.1" # https://tauri.app/plugin/notification/
+tauri-plugin-os = "2.0.1" # https://tauri.app/plugin/os-info/
+tauri-plugin-positioner = "2.1.0" # https://tauri.app/plugin/positioner/
+tauri-plugin-process = "2.0.1" # https://tauri.app/plugin/process/
+tauri-plugin-shell = "2.0.2" # https://tauri.app/plugin/shell/
+tauri-plugin-store = "2.1.0" # https://tauri.app/plugin/store/
+tauri-plugin-upload = "2.2.1" # https://tauri.app/plugin/upload/
+tauri-plugin-websocket = "2.0.1" # https://tauri.app/plugin/websocket/
 
 [target."cfg(not(any(target_os = \"android\", target_os = \"ios\")))".dependencies]
-tauri-plugin-global-shortcut = "2.0.0" # https://tauri.app/plugin/global-shortcut/
-tauri-plugin-updater = "2.0.0" # https://tauri.app/plugin/updater/
+tauri-plugin-global-shortcut = "2.0.1" # https://tauri.app/plugin/global-shortcut/
+tauri-plugin-updater = "2.1.0" # https://tauri.app/plugin/updater/
