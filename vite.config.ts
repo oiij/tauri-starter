@@ -113,6 +113,10 @@ export default defineConfig(({ mode }) => {
       },
       assetsDir: 'static/assets',
       rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          loading: resolve(__dirname, 'loading.html'),
+        },
         output: {
           chunkFileNames: 'static/js/[name]-[hash].js',
           entryFileNames: 'static/js/[name]-[hash].js',

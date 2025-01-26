@@ -25,6 +25,21 @@
         "titleBarStyle": "Visible",
         "hiddenTitle": true,
         "visible": false
+      },{
+        "title": "Loading",
+        "label": "loading",
+        "url": "/loading.html",
+        "width": 200,
+        "height": 200,
+        "center": true,
+        "resizable":false,
+        "fullscreen": false,
+        "decorations": false,
+        "transparent": true,
+        "titleBarStyle": "Visible",
+        "hiddenTitle": true,
+        "visible": true
+
       }
     ],
     "security": {
