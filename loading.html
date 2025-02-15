@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Splashscreen</title>
+    <title>Loading</title>
     <style>
       * {
         margin: 0;
@@ -12,134 +12,137 @@
       }
     </style>
   </head>
-  <body style="width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center">
-    <div>
-      <style>
-        @keyframes fade-in {
-          0% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 100;
-          }
-        }
-      </style>
-      <style>
-        .line-rotation-spinner {
-          position: relative;
-        }
-        .loader {
-          position: relative;
-          width: 2.5em;
-          height: 2.5em;
-          transform: rotate(165deg);
+
+  <body
+    style="width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center"
+    data-tauri-drag-region
+  >
+    <style>
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
         }
 
-        .loader:before,
-        .loader:after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          display: block;
+        100% {
+          opacity: 100;
+        }
+      }
+    </style>
+    <style>
+      .line-rotation-spinner {
+        position: relative;
+      }
+
+      .loader {
+        position: relative;
+        width: 2.5em;
+        height: 2.5em;
+        transform: rotate(165deg);
+      }
+
+      .loader:before,
+      .loader:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 0.5em;
+        height: 0.5em;
+        border-radius: 0.25em;
+        transform: translate(-50%, -50%);
+      }
+
+      .loader:before {
+        animation: before8 var(--duration) infinite ease-in-out;
+      }
+
+      .loader:after {
+        animation: after6 var(--duration) infinite ease-in-out;
+      }
+
+      @keyframes before8 {
+        0% {
           width: 0.5em;
+          box-shadow:
+            1em -0.5em var(--color-1),
+            -1em 0.5em var(--color-2);
+        }
+
+        35% {
+          width: 2.5em;
+          box-shadow:
+            0 -0.5em var(--color-1),
+            0 0.5em var(--color-2);
+        }
+
+        70% {
+          width: 0.5em;
+          box-shadow:
+            -1em -0.5em var(--color-1),
+            1em 0.5em var(--color-2);
+        }
+
+        100% {
+          box-shadow:
+            1em -0.5em var(--color-1),
+            -1em 0.5em var(--color-2);
+        }
+      }
+
+      @keyframes after6 {
+        0% {
           height: 0.5em;
-          border-radius: 0.25em;
-          transform: translate(-50%, -50%);
+          box-shadow:
+            0.5em 1em var(--color-3),
+            -0.5em -1em var(--color-4);
         }
 
-        .loader:before {
-          animation: before8 var(--duration) infinite ease-in-out;
+        35% {
+          height: 2.5em;
+          box-shadow:
+            0.5em 0 var(--color-3),
+            -0.5em 0 var(--color-4);
         }
 
-        .loader:after {
-          animation: after6 var(--duration) infinite ease-in-out;
+        70% {
+          height: 0.5em;
+          box-shadow:
+            0.5em -1em var(--color-3),
+            -0.5em 1em var(--color-4);
         }
 
-        @keyframes before8 {
-          0% {
-            width: 0.5em;
-            box-shadow:
-              1em -0.5em var(--color-1),
-              -1em 0.5em var(--color-2);
-          }
-
-          35% {
-            width: 2.5em;
-            box-shadow:
-              0 -0.5em var(--color-1),
-              0 0.5em var(--color-2);
-          }
-
-          70% {
-            width: 0.5em;
-            box-shadow:
-              -1em -0.5em var(--color-1),
-              1em 0.5em var(--color-2);
-          }
-
-          100% {
-            box-shadow:
-              1em -0.5em var(--color-1),
-              -1em 0.5em var(--color-2);
-          }
+        100% {
+          box-shadow:
+            0.5em 1em var(--color-3),
+            -0.5em -1em var(--color-4);
         }
-
-        @keyframes after6 {
-          0% {
-            height: 0.5em;
-            box-shadow:
-              0.5em 1em var(--color-3),
-              -0.5em -1em var(--color-4);
-          }
-
-          35% {
-            height: 2.5em;
-            box-shadow:
-              0.5em 0 var(--color-3),
-              -0.5em 0 var(--color-4);
-          }
-
-          70% {
-            height: 0.5em;
-            box-shadow:
-              0.5em -1em var(--color-3),
-              -0.5em 1em var(--color-4);
-          }
-
-          100% {
-            box-shadow:
-              0.5em 1em var(--color-3),
-              -0.5em -1em var(--color-4);
-          }
-        }
-      </style>
+      }
+    </style>
+    <div
+      style="
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        animation: fade-in 0.3s ease-in;
+      "
+      data-tauri-drag-region
+    >
       <div
+        class="line-rotation-spinner"
         style="
-          position: fixed;
-          width: 100%;
-          height: 100%;
-          inset: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          overflow: hidden;
-          animation: fade-in 0.3s ease-in;
-          z-index: 99999999999999;
+          --color-1: rgba(225, 20, 98, 0.75);
+          --color-2: rgba(111, 202, 220, 0.75);
+          --color-3: rgba(61, 184, 143, 0.75);
+          --color-4: rgba(233, 169, 32, 0.75);
+          --duration: 2s;
         "
+        data-tauri-drag-region
       >
-        <div
-          class="line-rotation-spinner"
-          style="
-            --color-1: rgba(225, 20, 98, 0.75);
-            --color-2: rgba(111, 202, 220, 0.75);
-            --color-3: rgba(61, 184, 143, 0.75);
-            --color-4: rgba(233, 169, 32, 0.75);
-            --duration: 2s;
-          "
-        >
-          <div class="loader" />
-        </div>
+        <div class="loader" data-tauri-drag-region />
       </div>
     </div>
   </body>

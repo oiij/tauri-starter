@@ -1,19 +1,19 @@
+import { useNaiveTheme } from '@oiij/naive-ui'
+import { useBoolean } from '@oiij/use'
 import { listen } from '@tauri-apps/api/event'
-import { getAllWindows } from '@tauri-apps/api/window'
 import { defineStore } from 'pinia'
-import { router } from '~/modules'
+import { router, useLanguage } from '~/modules'
 
 export const useAppStore = defineStore(
   'appStore',
   () => {
     const isTauri = ref(window.isTauri)
-    const { language, setLanguage } = useLanguage()
-    const { colorMode } = useTheme()
+    const { locale, language } = useLanguage()
+    const { isDark, preferredDark, colorMode } = useTheme()
+    const { color, theme, themeOverrides, locale: naiveLocal, dateLocale } = useNaiveTheme(isDark, locale)
     const { value: collapsed, toggle: toggleCollapsed } = useBoolean(false)
+
     async function initTauriEventListen() {
-      const window = (await getAllWindows()).find(f => f.label === 'main')
-      window?.setShadow(true)
-      window?.show()
       await listen('open-setting', () => {
         router.push('/setting')
       })
@@ -26,9 +26,16 @@ export const useAppStore = defineStore(
     init()
     return {
       isTauri,
+      locale,
       language,
-      setLanguage,
+      isDark,
+      preferredDark,
       colorMode,
+      color,
+      theme,
+      themeOverrides,
+      naiveLocal,
+      dateLocale,
       collapsed,
       toggleCollapsed,
     }

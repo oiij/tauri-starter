@@ -4,7 +4,7 @@ import type { MenuGroupOption, MenuOption } from 'naive-ui'
 const { t } = useI18n()
 const { collapsed, isTauri } = storeToRefs(useAppStore())
 const { toggleCollapsed } = useAppStore()
-const { menu, currentPath, changePath } = useRoutesMenu()
+const { naiveMenu, currentPath, setPath } = useAutoRouter()
 function renderLabel(option: MenuOption | MenuGroupOption) {
   return t(`GLOBAL.MENU.${option.label}`)
 }
@@ -29,9 +29,9 @@ function renderLabel(option: MenuOption | MenuGroupOption) {
             :collapsed-icon-size="24"
             :root-indent="20"
             :value="currentPath"
-            :options="menu"
+            :options="naiveMenu"
             :render-label="renderLabel"
-            @update:value="changePath"
+            @update:value="setPath"
           />
         </div>
         <div class="flex items-center justify-center p-y-[10px]">

@@ -14,3 +14,6 @@ dist-electron
 dist-server
 release
 *.local
+auto-imports.d.ts
+components.d.ts
+typed-router.d.ts

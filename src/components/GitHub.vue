@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <a class="flex items-center justify-center gap-1 text-xl" href="https://github.com/Eiog/tauri-starter" target="_blank" rel="noopener noreferrer">
+  <a class="flex items-center justify-center gap-1 text-xl" href="https://github.com/oiij/tauri-starter" target="_blank" rel="noopener noreferrer">
     <i class="i-mage-github" />
   </a>
 </template>

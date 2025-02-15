@@ -19,7 +19,7 @@ useHead({
 
 <template>
   <div class="wh-full flex-col-center gap-10">
-    <HelloWorld />
+    <h1>首页</h1>
   </div>
 </template>
 

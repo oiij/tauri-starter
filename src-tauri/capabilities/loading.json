@@ -1,0 +1,12 @@
+{
+    "$schema": "../gen/schemas/capabilities.json",
+    "identifier": "loading",
+    "description": "Capability for the loading window",
+    "windows": [
+        "loading"
+    ],
+    "permissions": [
+        "core:window:default",
+        "core:window:allow-start-dragging"
+    ]
+}

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.tauri.app/config/2.0.0-rc",
+  "$schema": "https://schema.tauri.app/config/2",
   "productName": "tauri-starter",
   "version": "0.1.0",
   "identifier": "com.tauri-starter.app",
@@ -28,9 +28,9 @@
       },{
         "title": "Loading",
         "label": "loading",
-        "url": "/loading.html",
-        "width": 200,
-        "height": 200,
+        "url": "loading",
+        "width": 134,
+        "height": 100,
         "center": true,
         "resizable":false,
         "fullscreen": false,
@@ -38,7 +38,8 @@
         "transparent": true,
         "titleBarStyle": "Visible",
         "hiddenTitle": true,
-        "visible": true
+        "visible": true,
+        "shadow": false
 
       }
     ],
