@@ -83,6 +83,9 @@ importers:
       axios:
         specifier: ^1.7.9
         version: 1.7.9
+      axios-tauri-fetch-adapter:
+        specifier: ^0.1.2
+        version: 0.1.2
       colord:
         specifier: ^2.9.3
         version: 2.9.3
@@ -2984,6 +2987,9 @@ packages:
     resolution: {integrity: sha512-zJAaP9zxTcvTHRlejau3ZOY4V7SRpiByf3/dxx2uyKxxor19tpmpV2QRsTKikckwhaPmr2dVpxxMr7jOCYVp5g==}
     engines: {node: '>=6.0.0'}
 
+  axios-tauri-fetch-adapter@0.1.2:
+    resolution: {integrity: sha512-sFoDo/8m7+0HQCRMzKsT1X0ncrM8Wh+7CcOid3WBWq1Iuqrntg+ulMT5p6DjG6a/MA4HyVnC62vwPxmex4NqgQ==}
+
   axios@1.7.9:
     resolution: {integrity: sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==}
 
@@ -5207,6 +5213,11 @@ packages:
   mime@3.0.0:
     resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
     engines: {node: '>=10.0.0'}
+    hasBin: true
+
+  mime@4.0.6:
+    resolution: {integrity: sha512-4rGt7rvQHBbaSOF9POGkk1ocRP16Md1x36Xma8sz8h8/vfCUI2OtEIeCqe4Ofes853x4xDoPiFLIT47J5fI/7A==}
+    engines: {node: '>=16'}
     hasBin: true
 
   mimic-fn@4.0.0:
@@ -10417,6 +10428,14 @@ snapshots:
 
   await-to-js@3.0.0: {}
 
+  axios-tauri-fetch-adapter@0.1.2:
+    dependencies:
+      '@tauri-apps/plugin-http': 2.3.0
+      axios: 1.7.9
+      mime: 4.0.6
+    transitivePeerDependencies:
+      - debug
+
   axios@1.7.9:
     dependencies:
       follow-redirects: 1.15.9
@@ -13091,6 +13110,8 @@ snapshots:
     optional: true
 
   mime@3.0.0: {}
+
+  mime@4.0.6: {}
 
   mimic-fn@4.0.0: {}
 

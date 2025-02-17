@@ -6,6 +6,7 @@ import type {
   InternalAxiosRequestConfig,
 } from 'axios'
 import axios from 'axios'
+import axiosTauriFetchAdapter from 'axios-tauri-fetch-adapter'
 import NProgress from 'nprogress'
 
 const BASE_PREFIX = import.meta.env.VITE_API_BASE_PREFIX
@@ -15,6 +16,7 @@ const axiosInstance: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  adapter: window.isTauri ? axiosTauriFetchAdapter : undefined,
 })
 const isDev = import.meta.env.DEV
 axiosInstance.interceptors.request.use(

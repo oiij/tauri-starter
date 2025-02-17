@@ -54,6 +54,7 @@
     "@vueuse/motion": "^2.2.6",
     "await-to-js": "^3.0.0",
     "axios": "^1.7.9",
+    "axios-tauri-fetch-adapter": "^0.1.2",
     "colord": "^2.9.3",
     "mixte": "3.2.0",
     "nanoid": "^5.1.0",
